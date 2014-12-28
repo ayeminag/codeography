@@ -1,0 +1,15 @@
+#!/usr/bin/env php
+
+<?php
+
+require __DIR__."/vendor/autoload.php";
+
+use Symfony\Component\Console\Application;
+use Codeography\Utils\AutoInitializer;
+
+$autoinit = new AutoInitializer;
+
+$app = new Application("codeography", "1.0");
+$generateCalssCommand = $autoinit->build("Codeography\Commands\GenerateClassCommand");
+$app->add($generateCalssCommand);
+$app->run();
