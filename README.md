@@ -1,6 +1,6 @@
 # What is codeography?
 
-Dillinger is a commandline php class generator. (Well, it's just my pet project. but I would love to maintain it as much as I can) :P
+Codeogrphy is a commandline php class generator. (Well, it's just my pet project. but I would love to maintain it as much as I can) :P
 
 ### Version
 1.0 beta
