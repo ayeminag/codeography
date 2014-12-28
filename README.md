@@ -94,7 +94,6 @@ class Person{
  - Generate class including constructor
  - Methods with arguments
  - Interface to create custom generators and extensions
- - Add Night Mode
 
 License
 ----
