@@ -23,7 +23,7 @@ trait Resolver{
 
   protected function getAccess($attribute){
     $access = explode(":", $attribute);
-    if(count($access) == 1) $access = array($access, "public");
+    if(count($access) == 1) $access = array($access[0], "public");
     return $access;
   }
   
