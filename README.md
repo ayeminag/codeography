@@ -88,6 +88,11 @@ class Person{
 ### codeography depends on fllowing composer packages
 - symfony/console
 - symfony/finder
+
+### Contributions
+feel free to fork this repo and submit pull requests, I will review them as soon as I can,
+and merge them (if it's appropriate), and I will name you as a contributor here.
+Thank @nainglinaung for contributions.
 ### Todo's
 
  - Write Tests
