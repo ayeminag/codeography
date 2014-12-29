@@ -122,7 +122,7 @@ Thank [nainglinaung](http://github.com/nainglinaung) for contributions.
 
  - Write Tests
  - Generate class including constructor
- - --Methods with arguments--
+ - -Methods with arguments-
  - Interface to create custom generators and extensions
 
 License
