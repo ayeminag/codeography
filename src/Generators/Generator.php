@@ -19,14 +19,10 @@ class Generator{
 
 
   public function generate($className, $options=null){
-    
     $codes = $this->prepareClass($className, $options);
     $this->files->put($this->getFileName($className), $codes);
   }
 
-  public function scaffold($className,$options) {
-     echo $options;
-  }
 
 
   protected function getFileName($className){
@@ -40,11 +36,8 @@ class Generator{
   }
 
   protected function prepareClass($className, $options){
-    
     $attributes = $this->getAttributes($options);
-    $methods = $this->getMethods($options);
-
-    
+    $methods = $this->getMethods($options);    
     return $this->classMaker->make($className, $attributes, $methods);
   }
 
