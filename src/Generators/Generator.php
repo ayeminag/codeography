@@ -18,27 +18,42 @@ class Generator{
   }
 
 
-  public function generate($className, $options){
+  public function generate($className, $options=null){
+    
     $codes = $this->prepareClass($className, $options);
     $this->files->put($this->getFileName($className), $codes);
   }
+
+  public function scaffold($className,$options) {
+     echo $options;
+  }
+
 
   protected function getFileName($className){
     $chunks = explode("\\",$className);
     return getcwd().DIRECTORY_SEPARATOR.array_pop($chunks).".php";
   }
 
+
+  protected function checkAttributesAndMethods($option) {
+    return (isset($option) AND $option != "");
+  }
+
   protected function prepareClass($className, $options){
+    
     $attributes = $this->getAttributes($options);
     $methods = $this->getMethods($options);
+
+    
     return $this->classMaker->make($className, $attributes, $methods);
   }
 
+
   protected function getAttributes($options){
-    return (isset($options["attributes"])) ? $this->attributeMaker->make($options["attributes"]) : "";
+    return ($this->checkAttributesAndMethods($options["attributes"])) ? $this->attributeMaker->make($options["attributes"]) : null;
   }
 
   protected function getMethods($options){
-    return (isset($options["methods"])) ? $this->methodMaker->make($options["methods"]) : "";
+    return  ($this->checkAttributesAndMethods($options["methods"])) ? $this->methodMaker->make($options["methods"]) : null;
   }
 }
