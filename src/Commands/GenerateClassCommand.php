@@ -5,13 +5,13 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Codeography\Generators\Generator;
+use Codeography\Generators\ClassGenerator;
 
 class GenerateClassCommand extends Command{
 
   protected $generator;
 
-  public function __construct(Generator $generator){
+  public function __construct(ClassGenerator $generator){
     $this->generator = $generator;
     parent::__construct();
   }

@@ -6,14 +6,10 @@ Codeogrphy is a commandline php class generator. (Well, it's just my pet project
 1.0 beta
 
 ###How to use
-clone this repo and cd into the directory, and run `composer install`
+clone this repo and cd into the directory, and run `composer install` and make sure you add codeography to your environment PATH vairable.
 ### `codeography generate:class` command
 ```sh
 $ codeography generate:class Person
-```
-or if you are on windows
-```sh
-$ php path\to\codeography generate:class Person
 ```
 will generate a plain php file with empty class in it like below.
 ```php
@@ -64,7 +60,7 @@ class Person{
 
 you can also specify access modifiers
 ```sh
-$ codeography generate:class --attributes="name:public age:protected" --methods="someMethod:private anotherMethod:public" Person
+$ codeography generate:class --attributes="public:name protected:age" --methods="private:someMethod public:anotherMethod" Person
 ```
 will generate
 ```php
@@ -85,6 +81,35 @@ class Person{
   }
 }
 ```
+
+if you want your methods to accept arguments you can also do that as follow,
+just type a `|` after your method's name and continue typing your list of arguments separated by commas like this 
+`--methods="accessmodifier:methodName|arg1,arg2,arg3"`
+
+`codeography generate:class Car --attributes="model make enginepower" --methods="drive refillGas|amount,type"`
+will generate 
+
+```php
+<?php 
+
+class Car{
+
+  public $model;
+
+  public $make;
+
+  public $enginepower;
+
+  public function drive(){
+    //
+  }
+
+  public function refillGas($amount, $type){
+    //
+  }
+
+}
+```
 ### codeography depends on fllowing composer packages
 - symfony/console
 - symfony/finder
@@ -97,7 +122,7 @@ Thank [nainglinaung](http://github.com/nainglinaung) for contributions.
 
  - Write Tests
  - Generate class including constructor
- - Methods with arguments
+ - --Methods with arguments--
  - Interface to create custom generators and extensions
 
 License

@@ -1,6 +1,7 @@
 <?php namespace Codeography\Generators;
 
 use Codeography\Utils\FileSystem;
+use Codeography\Traits\Resolver;
 
 class MethodMaker{
 
@@ -20,8 +21,8 @@ class MethodMaker{
 
   protected function generateMethods($methods, $stub){
     $methodRaw = [];
-    foreach($methods as $method => $access){
-      $methodRaw[] = str_replace("{{accessmodifier}}", $access, str_replace("{{method}}", $method, $stub));
+    foreach($methods as $method => $properties){
+      $methodRaw[] = str_replace("{{arguments}}", $properties[1] ,str_replace("{{accessmodifier}}", $properties[0], str_replace("{{method}}", $method, $stub)));
     }
     return implode(PHP_EOL.PHP_EOL, $methodRaw);
   }

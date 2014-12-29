@@ -1,3 +1,3 @@
-  {{accessmodifier}} function {{method}}(){
+  {{accessmodifier}} function {{method}}({{arguments}}){
     //
   }

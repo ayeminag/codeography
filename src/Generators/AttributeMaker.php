@@ -1,7 +1,7 @@
 <?php namespace Codeography\Generators;
 
 use Codeography\Utils\FileSystem;
-
+use Codeography\Traits\Resolver;
 class AttributeMaker{
 
   protected $files;
@@ -20,7 +20,7 @@ class AttributeMaker{
   protected function generateAttributes($attributes, $stub){
     $attrRaw = [];
     foreach($attributes as $attribute => $access){
-      $attrRaw[] = str_replace("{{accessmodifier}}", $access, str_replace("{{attribute}}", $attribute, $stub));
+      $attrRaw[] = str_replace("{{accessmodifier}}", $access[0], str_replace("{{attribute}}", $attribute, $stub));
     }
     return implode(PHP_EOL.PHP_EOL, $attrRaw).PHP_EOL;
   }

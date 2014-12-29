@@ -1,7 +1,8 @@
 <?php namespace Codeography\Generators;
 
+use Codeography\Contracts\GeneratorInterface;
 use Codeography\Utils\FileSystem;
-class Generator{
+class ClassGenerator implements GeneratorInterface{
 
   protected $files;
   protected $attributeMaker;
@@ -18,15 +19,15 @@ class Generator{
   }
 
 
-  public function generate($className, $options=null){
-    $codes = $this->prepareClass($className, $options);
-    $this->files->put($this->getFileName($className), $codes);
+  public function generate($name, $options=null){
+    $codes = $this->prepareClass($name, $options);
+    $this->files->put($this->getFileName($name), $codes);
   }
 
 
 
-  protected function getFileName($className){
-    $chunks = explode("\\",$className);
+  protected function getFileName($name){
+    $chunks = explode("\\",$name);
     return getcwd().DIRECTORY_SEPARATOR.array_pop($chunks).".php";
   }
 
@@ -35,10 +36,10 @@ class Generator{
     return (isset($option) AND $option != "");
   }
 
-  protected function prepareClass($className, $options){
+  protected function prepareClass($name, $options){
     $attributes = $this->getAttributes($options);
     $methods = $this->getMethods($options);    
-    return $this->classMaker->make($className, $attributes, $methods);
+    return $this->classMaker->make($name, $attributes, $methods);
   }
 
 
