@@ -34,13 +34,18 @@ class GenerateClassCommand extends Command{
         "Method names separated by spaces (e.g, getJob setJob).
         If you want to specicify accessmodifier append it with colum for each method,
         (e.g, getJob:public setJob:public)",
-        "");
+        "")
+      ->addOption("skip-constructor",
+        null,
+        InputOption::VALUE_NONE,
+        "flag to exclude constructor");
   }
 
   protected function execute(InputInterface $input, OutputInterface $output){
     $name = $input->getArgument("name");
     $options["attributes"] = $input->getOption("attributes");
     $options["methods"] = $input->getOption("methods");
+    $options["skip-constructor"] = $input->getOption("skip-constructor");
     $output->writeln("<comment>Generating Class...</comment>");
     $this->generate($name, $options);
     $output->writeln("<info>Class Generated Successfully!!<info>");

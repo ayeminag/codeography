@@ -2,12 +2,15 @@
 
 use Codeography\Contracts\GeneratorInterface;
 use Codeography\Utils\FileSystem;
+use Codeography\Traits\Resolver;
 class ClassGenerator implements GeneratorInterface{
 
   protected $files;
   protected $attributeMaker;
   protected $classMaker;
   protected $methodMaker;
+
+  use Resolver;
   public function __construct(FileSystem $files, 
                               AttributeMaker $attributeMaker,
                               ClassMaker $classMaker,
@@ -33,7 +36,7 @@ class ClassGenerator implements GeneratorInterface{
 
 
   protected function checkAttributesAndMethods($option) {
-    return (isset($option) AND $option != "");
+    return (isset($option) AND trim($option) != "");
   }
 
   protected function prepareClass($name, $options){
@@ -48,6 +51,21 @@ class ClassGenerator implements GeneratorInterface{
   }
 
   protected function getMethods($options){
-    return  ($this->checkAttributesAndMethods($options["methods"])) ? $this->methodMaker->make($options["methods"]) : null;
+    $options = $this->resolveConstructor($options);
+    return ($this->checkAttributesAndMethods($options["methods"])) ? $this->methodMaker->make($options["methods"]) : null;
   }
+
+  protected function resolveConstructor($options){
+    if($options["skip-constructor"]) return $options;
+    $methods = $this->getConstructorString($options["attributes"]) . " " . $options["methods"];
+    $options["methods"] = trim($methods);
+    return $options;
+  }
+
+  protected function getConstructorString($attributes){
+    $constructor = "__construct";
+    if(empty($attributes)) return $constructor;
+    return $constructor."|".implode(",", array_keys($this->resolve($attributes)));
+  }
+
 }

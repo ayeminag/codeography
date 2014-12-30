@@ -35,12 +35,14 @@ trait Resolver{
 
     //otherwise explode the string from commas and append $ to each words and 
     //finally join all the words together with a comma and space and retrun it
-    $arguments = array_map(function($argument){
-      return "$".$argument;
-    }, explode(",", $arguments));
+    $arguments = array_map(array($this, 'appendDollarSign'), explode(",", $arguments));
     return implode(", ", $arguments);
   }
 
+  //append dollar sign to the given string
+  protected function appendDollarSign($argument){
+    return "$".$argument;
+  }
   protected function getAccess($attribute){
     $access = explode(":", $attribute);
     if(count($access) == 1) $access = array("public", $access[0]);
