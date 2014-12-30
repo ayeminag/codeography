@@ -21,7 +21,7 @@ class Person{
 ```
 `codeography` can also handle namespaces
 ```sh
-$ codeography generate:calss SomeNamespace\SubNamespace\Person
+$ codeography generate:calss "SomeNamespace\SubNamespace\Person"
 ```
 will give you namepsaced class like below
 ```php
