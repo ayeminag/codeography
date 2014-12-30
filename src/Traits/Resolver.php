@@ -8,7 +8,7 @@ trait Resolver{
   }
 
   protected function extractAttributes($attributes){
-    $this->attributes = explode(" ", $attributes);
+    $this->attributes = explode(" ", trim($attributes));
     return $this;
   }
 

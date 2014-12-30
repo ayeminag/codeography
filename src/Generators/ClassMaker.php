@@ -23,7 +23,7 @@ class ClassMaker{
   }
 
   protected function resolveNamespace($className){
-    $chunks = explode("\\", $className);
+    $chunks = explode("\\", trim($className));
     $className = array_pop($chunks);
     $namespace = implode("\\", $chunks);
     $namespace = (empty($namespace)) ? "" : "namespace ".$namespace.";";
