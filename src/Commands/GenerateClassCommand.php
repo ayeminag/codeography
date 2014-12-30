@@ -26,14 +26,16 @@ class GenerateClassCommand extends Command{
           InputOption::VALUE_REQUIRED,
           "Attribute names separated by spaces (e.g, name age job).
           If you want to specicify accessmodifier append it with colum for each attributes,
-          (e.g, name:public age:public job:private)" ,
+          (e.g, public:name public:age private:job)" ,
           "")
       ->addOption("methods",
         null, 
         InputOption::VALUE_REQUIRED,
         "Method names separated by spaces (e.g, getJob setJob).
         If you want to specicify accessmodifier append it with colum for each method,
-        (e.g, getJob:public setJob:public)",
+        (e.g, public:getJob public:setJob).
+        You can specifiy arguments that your methods accepts by typing a pipe after methodname and list
+        list of comma sperated arguments (e.g public:refillGas|amount,type",
         "");
   }
 
