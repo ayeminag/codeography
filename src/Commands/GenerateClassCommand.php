@@ -26,7 +26,7 @@ class GenerateClassCommand extends Command{
           InputOption::VALUE_REQUIRED,
           "Attribute names separated by spaces (e.g, name age job).
           If you want to specicify accessmodifier append it with colum for each attributes,
-          (e.g, name:public age:public job:private)" ,
+          (e.g, public:name public:age private:job)" ,
           "")
       ->addOption("methods",
         null, 

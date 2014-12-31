@@ -21,14 +21,16 @@ class Person{
 ```
 `codeography` can also handle namespaces
 ```sh
-$ codeography generate:calss SomeNamespace\SubNamespace\Person
+$ codeography generate:calss "SomeNamespace\SubNamespace\Person"
 ```
 will give you namepsaced class like below
 ```php
 <?php namespace SomeNamespace\SubNamespace;
 
 class Person{
+  public function __construct(){
 
+  }
 }
 ```
 
@@ -47,6 +49,10 @@ class Person{
   public $name;
 
   public $age;
+
+  public function  __construct($name, $age){
+
+  }
 
   public function someMethod(){
     //
@@ -71,6 +77,10 @@ class Person{
   public $name;
 
   protected $age;
+
+  public function __construct($name, $age){
+
+  }
 
   private function someMethod(){
     //
@@ -100,6 +110,10 @@ class Car{
 
   public $enginepower;
 
+  public function __construct($model, $make, $enginepower){
+
+  }
+
   public function drive(){
     //
   }
@@ -110,6 +124,21 @@ class Car{
 
 }
 ```
+
+codeography by default add a constructor function with all the properties you defined using `--attributes`.
+But you can exclude the constructor using the `--skip-construction`
+i.e
+
+```sh
+$ codeography generate:class Person --attributes="your attributes here" --methods="your methods here" --skip-constructor
+```
+You can also specifiy your own constructor by using `--skip-constructor` flag and specify you constructor like you
+would do with the normal methods
+
+```sh
+$ codeography generate:class Car --attributes="model make enginepower" --skip-constructor --methods="__construct|model,make drive refillGas|amount,type"
+```
+
 ### codeography depends on fllowing composer packages
 - symfony/console
 - symfony/finder
@@ -121,7 +150,7 @@ Thank [nainglinaung](http://github.com/nainglinaung) for contributions.
 ### Todo's
 
  - Write Tests
- - Generate class including constructor
+ - <del>Generate class including constructor</del>
  - <del>Methods with arguments</del>
  - Interface to create custom generators and extensions
 
