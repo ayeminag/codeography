@@ -16,7 +16,9 @@ will generate a plain php file with empty class in it like below.
 <?php 
 
 class Person{
-
+  public function __construct(){
+    
+  }
 }
 ```
 `codeography` can also handle namespaces
