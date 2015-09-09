@@ -37,7 +37,7 @@ class Person{
 ```
 
 ###Properties and Methods
-if you want to generate class with attribute and mtehods there's `--attibutes` and `--methods` options available for you.
+If you want to generate class with attribute and mtehods there's `--attibutes` and `--methods` options available for you.
 ```sh
 $ codeography generate:class --attributes="name age" --methods="someMethod anotherMethod" Person
 ```
